@@ -13,6 +13,42 @@ These are defined as:
 
 **********************************************************
 """
+
+def bond_calculator_function():
+    while True:
+        value = input("House value: ")
+        if value.isnumeric():
+            value = float(value)
+            break
+        else:
+            print("That is not a valie house value. Try again.")
+
+    while True:
+        interest = input("Interest rate: ")
+        if interest.replace(".", "").isnumeric():
+            interest = float(interest)
+            break
+        else:
+            print("That is not a valid interest rate. Try again.")
+
+    while True:
+        months = input("Number of months: ")
+        if months.isnumeric():
+            months = int(months)
+            break
+        else:
+            print("That is not a valid amount of months. Try again.")
+
+    final = (interest * value)/(1 - (1 + interest)**(-months))
+
+    repayment = round((final / months),2)
+
+    print(f"""
+    **********************************************************
+    Your monthly repayments wil be £{repayment}
+    **********************************************************
+            """)
+
 # print information to user, take user input for investment type
 print(intro)
 
@@ -60,39 +96,7 @@ while True:
         break
     # following block will only run it user has input bond.
     elif finance == "bond":
-        while True:
-            value = input("House value: ")
-            if value.isnumeric():
-                value = float(value)
-                break
-            else:
-                print("That is not a valie house value. Try again.")
-        
-        while True:
-            interest = input("Interest rate: ")
-            if interest.replace(".", "").isnumeric():
-                interest = float(interest)
-                break
-            else:
-                print("That is not a valid interest rate. Try again.")
-        
-        while True:
-            months = input("Number of months: ")
-            if months.isnumeric():
-                months = int(months)
-                break
-            else:
-                print("That is not a valid amount of months. Try again.")
-
-        final = (interest * value)/(1 - (1 + interest)**(-months))
-
-        repayment = round((final / months),2)
-
-        print(f"""
-**********************************************************
-Your monthly repayments wil be £{repayment}
-**********************************************************
-              """)
+        bond_calculator_function()
         break
 
     else:
