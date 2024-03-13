@@ -49,6 +49,44 @@ def bond_calculator_function():
     **********************************************************
             """)
 
+def investment_calculator_function():
+    while True:
+        amount = (input("Amount: ")).strip("£")
+        if amount.isnumeric():
+                amount = float(amount)
+                break
+        else:
+            print("That is not a valid amount, try again.")
+
+    while True:
+        percent = (input("Interest rate: ")).strip("%")
+        if percent.replace(".", "").isnumeric():
+            percent = float(percent)
+            break
+        else:
+            print("That is not a valid interese rate, try again.")
+    
+    while True:
+        years = input("Number of years: ")
+        if years.isnumeric():
+            years = int(years)
+            break
+        else:
+            print("That is not a valid number of years. Try again.")
+
+
+    while True:
+        interest = input("Simple or compound interest? ").lower()
+        if interest == "simple":
+            final = (percent/100 * amount * years) + amount
+            break
+        elif interest == "compound":
+            final = round((amount*(1+percent/100)**years),2)
+            break
+        else:
+            print("That is not a valid interest type. Try again.")
+    print(f"Your {finance} will be worth £{final}")
+
 # print information to user, take user input for investment type
 print(intro)
 
@@ -56,43 +94,7 @@ print(intro)
 while True:
     finance = input("Enter either 'investment' or 'bond' from the menu above to proceed: ").lower()
     if finance == "investment":
-        
-        while True:
-            amount = (input("Amount: ")).strip("£")
-            if amount.isnumeric():
-                    amount = float(amount)
-                    break
-            else:
-                print("That is not a valid amount, try again.")
-
-        while True:
-            percent = (input("Interest rate: ")).strip("%")
-            if percent.replace(".", "").isnumeric():
-                percent = float(percent)
-                break
-            else:
-                print("That is not a valid interese rate, try again.")
-        
-        while True:
-            years = input("Number of years: ")
-            if years.isnumeric():
-                years = int(years)
-                break
-            else:
-                print("That is not a valid number of years. Try again.")
-
-
-        while True:
-            interest = input("Simple or compound interest? ").lower()
-            if interest == "simple":
-                final = (percent/100 * amount * years) + amount
-                break
-            elif interest == "compound":
-                final = round((amount*(1+percent/100)**years),2)
-                break
-            else:
-                print("That is not a valid interest type. Try again.")
-        print(f"Your {finance} will be worth £{final}")
+        investment_calculator_function()
         break
     # following block will only run it user has input bond.
     elif finance == "bond":
